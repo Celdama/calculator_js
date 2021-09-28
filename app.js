@@ -1,3 +1,19 @@
+const displayResult = document.getElementById('display-result');
+const numValue = Array.from(document.querySelectorAll('.numValue'));
+
+let displayValue = 0;
+
+const populateDisplay = (num) => {
+  displayResult.textContent = num;
+};
+
+numValue.forEach((num) => {
+  num.addEventListener('click', () => {
+    displayValue = num.textContent;
+    populateDisplay(displayValue);
+  });
+});
+
 const add = (a, b) => a + b;
 
 const substrat = (a, b) => a - b;
