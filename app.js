@@ -1,7 +1,18 @@
 const displayResult = document.getElementById('display-result');
 const numValue = Array.from(document.querySelectorAll('.numValue'));
+const addBtn = document.getElementById('addBtn');
+const resultBtn = document.getElementById('resultBtn');
 
-let displayValue = 0;
+let displayValue = '';
+let firstOperande = 0;
+let secondOperande = 0;
+let calcOperator = '';
+
+addBtn.addEventListener('click', () => {
+  firstOperande = Number(displayValue);
+  displayValue = '';
+  calcOperator = '+';
+});
 
 const populateDisplay = (num) => {
   displayResult.textContent = num;
@@ -9,12 +20,16 @@ const populateDisplay = (num) => {
 
 numValue.forEach((num) => {
   num.addEventListener('click', () => {
-    displayValue = num.textContent;
+    displayValue += num.textContent;
     populateDisplay(displayValue);
   });
 });
 
-const add = (a, b) => a + b;
+const add = (a, b) => {
+  displayValue = +a + +b;
+  populateDisplay(displayValue);
+  // console.log(displayValue);
+};
 
 const substrat = (a, b) => a - b;
 
@@ -41,4 +56,7 @@ const operate = (operator, a, b) => {
   }
 };
 
-operate('/', 2, 4);
+resultBtn.addEventListener('click', () => {
+  secondOperande = displayValue;
+  operate(calcOperator, firstOperande, secondOperande);
+});
