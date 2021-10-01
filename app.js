@@ -13,7 +13,7 @@ keys.addEventListener('click', (e) => {
     if (!action) {
       // j'affiche la valeur dans l'écran
       // permet à l'utilisateur d'entrer des nombres
-      if (displayedNum === '0' || previousKeyType === 'operator') {
+      if (displayedNum === '0' || previousKeyType === 'operator' || display.textContent === 'Not Good') {
         display.textContent = keyContent;
       } else {
         display.textContent = displayedNum + keyContent;
@@ -62,7 +62,13 @@ keys.addEventListener('click', (e) => {
         const secondValue = displayedNum;
         const operator = calculator.dataset.operator;
         const result = operate(operator, firstValue, secondValue);
-        display.textContent = roundedResult(result);
+        console.log(result);
+        console.log(result === Infinity ? 'oui' : 'non');
+        if (result === Infinity) {
+          display.textContent = 'Not Good';
+        } else {
+          display.textContent = roundedResult(result);
+        }
         calculator.dataset.firstValue = '';
       }
     }
