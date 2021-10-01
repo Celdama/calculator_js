@@ -22,7 +22,10 @@ keys.addEventListener('click', (e) => {
     }
 
     if (action === 'decimal') {
-      display.textContent = `${displayedNum}.`;
+      // ne pas permettre à l'utilisateur d'ajouter plusieurs décimals
+      if (!display.textContent.includes('.')) {
+        display.textContent = `${displayedNum}.`;
+      }
     }
 
     // gerer les calculs
@@ -62,8 +65,7 @@ keys.addEventListener('click', (e) => {
         const secondValue = displayedNum;
         const operator = calculator.dataset.operator;
         const result = operate(operator, firstValue, secondValue);
-        console.log(result);
-        console.log(result === Infinity ? 'oui' : 'non');
+        // divide by 0 dont crash my calculator
         if (result === Infinity) {
           display.textContent = 'Not Good';
         } else {
