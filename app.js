@@ -66,8 +66,19 @@ keys.addEventListener('click', (e) => {
         calculator.dataset.firstValue = '';
       }
     }
+
+    if (action === 'clear') {
+      clearCalculator();
+    }
   }
 });
+
+const clearCalculator = () => {
+  calculator.dataset.firstValue = '';
+  display.textContent = 0;
+  calculator.dataset.operator = '';
+  calculator.dataset.previousKeyType = '';
+};
 
 const roundedResult = (num) => Math.round(num * 1000000) / 1000000;
 
