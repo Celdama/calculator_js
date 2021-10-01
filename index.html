@@ -11,29 +11,29 @@
 <body>
   <div id="app">
     <div id="calculator">
-      <div class="display">
-        <span id="display-result"></span>
+      <div class="calculator-display">
+        <span id="display-result">0</span>
       </div>
-      <div class="buttons">
-        <button id="clearBtn">AC</button>
+      <div class="calculator-keys">
+        <button data-action="clear">AC</button>
         <button>+/-</button>
         <button>%</button>
-        <button id="divideBtn">/</button>
+        <button class="key-operator" data-action="divide">/</button>
         <button class="numBtn" value="7">7</button>
         <button class="numBtn" value="8">8</button>
         <button class="numBtn" value="9">9</button>
-        <button id="multiplyBtn">X</button>
+        <button class="key-operator" data-action="multiply">&times;</button>
         <button class="numBtn" value="4">4</button>
         <button class="numBtn" value="5">5</button>
         <button class="numBtn" value="6">6</button>
-        <button id="substratBtn">-</button>
+        <button class="key-operator" data-action="substract">-</button>
         <button class="numBtn" value="1">1</button>
         <button class="numBtn" value="2">2</button>
         <button class="numBtn" value="3">3</button>
-        <button id="addBtn">+</button>
+        <button class="key-operator" data-action="add">+</button>
         <button class="numBtn test" value="0">0</button>
-        <button>,</button>
-        <button id="resultBtn">=</button>
+        <button data-action="decimal">.</button>
+        <button class="key-equalt" data-action="calculate">=</button>
       </div>
     </div>
   </div>
