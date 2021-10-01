@@ -2,24 +2,6 @@ const calculator = document.querySelector('#calculator');
 const keys = calculator.querySelector('.calculator-keys');
 const display = document.querySelector('#display-result');
 
-console.log(keys);
-
-// const calculate = (n1, operator, n2) => {
-//   let result = '';
-
-//   if (operator === 'add') {
-//     result = parseFloat(n1) + parseFloat(n2);
-//   } else if (operator === 'substract') {
-//     result = parseFloat(n1) - parseFloat(n2);
-//   } else if (operator === 'multiply') {
-//     result = parseFloat(n1) * parseFloat(n2);
-//   } else if (operator === 'divide') {
-//     result = parseFloat(n1) / parseFloat(n2);
-//   }
-
-//   return result;
-// };
-
 keys.addEventListener('click', (e) => {
   if (e.target.matches('button')) {
     const key = e.target;
@@ -45,19 +27,39 @@ keys.addEventListener('click', (e) => {
 
     // gerer les calculs
     if (action === 'add' || action === 'substract' || action === 'divide' || action === 'multiply') {
-      // je set operator pour que la valeur de mon display soit remplacé avec une nouvelle valeur
-      calculator.dataset.previousKeyType = 'operator';
-      // je set firstValue avec la première valeur pour mon calcul
-      calculator.dataset.firstValue = displayedNum;
-      // je set operator pour mon calcul
-      calculator.dataset.operator = action;
+      // permettre les opérations multiples
+      // j'ai automatiquement la présence de displayedNum, donc
+      // si le premier opérand est présent dans mon élément html calculator
+      // et j'ai déjà un opérateur de mis en place dans ce même élément html calculator
+      // je veux permettre à l'utilisateur d'entrée ce type de calcul 12 + 7 - 5 * 3
+      // et d'obtenir le bon résultat d'affiché sans avoir à cliqué sur =
+      // mais à chaque clic sur un nouvel opérateur
+      if (calculator.dataset.firstValue && calculator.dataset.operator) {
+        const operator = calculator.dataset.operator;
+        const firstValue = calculator.dataset.firstValue;
+        const resultSeveralOperations = operate(operator, firstValue, displayedNum);
+        display.textContent = Math.round(resultSeveralOperations * 1000000) / 1000000;
+        calculator.dataset.firstValue = resultSeveralOperations;
+        calculator.dataset.previousKeyType = 'operator';
+        calculator.dataset.operator = action;
+      } else {
+        // gére le premier clic sur un opérateur en enregistrant la valeur
+        // avant le clic sur l'opérateur dans l'élément html calculator
+        calculator.dataset.previousKeyType = 'operator';
+        // je set firstValue avec la première valeur pour mon calcul
+        calculator.dataset.firstValue = displayedNum;
+        // je set operator pour mon calcul
+        calculator.dataset.operator = action;
+      }
     }
 
     if (action === 'calculate') {
       const firstValue = calculator.dataset.firstValue;
       const secondValue = displayedNum;
       const operator = calculator.dataset.operator;
-      display.textContent = operate(operator, firstValue, secondValue);
+      const result = operate(operator, firstValue, secondValue);
+      display.textContent = Math.round(result * 1000000) / 1000000;
+      calculator.dataset.firstValue = '';
     }
   }
 });
