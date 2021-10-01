@@ -2,6 +2,37 @@ const calculator = document.querySelector('#calculator');
 const keys = calculator.querySelector('.calculator-keys');
 const display = document.querySelector('#display-result');
 
+const roundedResult = (num) => Math.round(num * 1000000) / 1000000;
+
+const clearCalculator = () => {
+  calculator.dataset.firstValue = '';
+  display.textContent = 0;
+  calculator.dataset.operator = '';
+  calculator.dataset.previousKeyType = '';
+};
+
+const add = (a, b) => parseFloat(a) + parseFloat(b);
+
+const substract = (a, b) => parseFloat(a) - parseFloat(b);
+
+const multiply = (a, b) => parseFloat(a) * parseFloat(b);
+
+const divide = (a, b) => parseFloat(a) / parseFloat(b);
+
+const operate = (operator, firstOperande, secondOperande) => {
+  let result = null;
+  if (operator === 'add') {
+    result = add(firstOperande, secondOperande);
+  } else if (operator === 'substract') {
+    result = substract(firstOperande, secondOperande);
+  } else if (operator === 'multiply') {
+    result = multiply(firstOperande, secondOperande);
+  } else if (operator === 'divide') {
+    result = divide(firstOperande, secondOperande);
+  }
+  return result;
+};
+
 keys.addEventListener('click', (e) => {
   if (e.target.matches('button')) {
     const key = e.target;
@@ -88,34 +119,3 @@ keys.addEventListener('click', (e) => {
     }
   }
 });
-
-const clearCalculator = () => {
-  calculator.dataset.firstValue = '';
-  display.textContent = 0;
-  calculator.dataset.operator = '';
-  calculator.dataset.previousKeyType = '';
-};
-
-const roundedResult = (num) => Math.round(num * 1000000) / 1000000;
-
-const add = (a, b) => parseFloat(a) + parseFloat(b);
-
-const substract = (a, b) => parseFloat(a) - parseFloat(b);
-
-const multiply = (a, b) => parseFloat(a) * parseFloat(b);
-
-const divide = (a, b) => parseFloat(a) / parseFloat(b);
-
-const operate = (operator, firstOperande, secondOperande) => {
-  let result = null;
-  if (operator === 'add') {
-    result = add(firstOperande, secondOperande);
-  } else if (operator === 'substract') {
-    result = substract(firstOperande, secondOperande);
-  } else if (operator === 'multiply') {
-    result = multiply(firstOperande, secondOperande);
-  } else if (operator === 'divide') {
-    result = divide(firstOperande, secondOperande);
-  }
-  return result;
-};
