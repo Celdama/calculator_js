@@ -28,6 +28,14 @@ keys.addEventListener('click', (e) => {
       }
     }
 
+    if (action === 'delete') {
+      // permettre à l'utilisateur de delete le dernier chiffre à l'écran en cas d'erreur
+      // impossible si il ne reste qu'un chiffre à l'écran
+      if (display.textContent !== '0' && display.textContent.length > 1) {
+        display.textContent = display.textContent.slice(0, -1);
+      }
+    }
+
     // gerer les calculs
     if (action === 'add' || action === 'substract' || action === 'divide' || action === 'multiply') {
       // permettre les opérations multiples
