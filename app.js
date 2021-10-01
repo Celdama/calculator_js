@@ -37,9 +37,9 @@ keys.addEventListener('click', (e) => {
       if (calculator.dataset.firstValue && calculator.dataset.operator) {
         const operator = calculator.dataset.operator;
         const firstValue = calculator.dataset.firstValue;
-        const resultSeveralOperations = operate(operator, firstValue, displayedNum);
-        display.textContent = Math.round(resultSeveralOperations * 1000000) / 1000000;
-        calculator.dataset.firstValue = resultSeveralOperations;
+        const result = operate(operator, firstValue, displayedNum);
+        display.textContent = roundedResult(result);
+        calculator.dataset.firstValue = result;
         calculator.dataset.previousKeyType = 'operator';
         calculator.dataset.operator = action;
       } else {
@@ -54,15 +54,22 @@ keys.addEventListener('click', (e) => {
     }
 
     if (action === 'calculate') {
-      const firstValue = calculator.dataset.firstValue;
-      const secondValue = displayedNum;
-      const operator = calculator.dataset.operator;
-      const result = operate(operator, firstValue, secondValue);
-      display.textContent = Math.round(result * 1000000) / 1000000;
-      calculator.dataset.firstValue = '';
+      // ne fait rien si les 2 opérande et l'opérateur ne sont pas défini
+      // évite les bugs de repartir à zero si je cliques sur =
+      // sans que mes 2 opérandes soit définies
+      if (calculator.dataset.firstValue && calculator.dataset.operator) {
+        const firstValue = calculator.dataset.firstValue;
+        const secondValue = displayedNum;
+        const operator = calculator.dataset.operator;
+        const result = operate(operator, firstValue, secondValue);
+        display.textContent = roundedResult(result);
+        calculator.dataset.firstValue = '';
+      }
     }
   }
 });
+
+const roundedResult = (num) => Math.round(num * 1000000) / 1000000;
 
 const add = (a, b) => parseFloat(a) + parseFloat(b);
 
