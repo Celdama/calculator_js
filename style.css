@@ -1,21 +1,78 @@
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+
 html {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
 }
 
+body {
+  /* border: 1px solid red; */
+  /* height: 90vh; */
+  background-color: #DDE3E6;
+}
+
 #app {
   display: flex;
+  height: 90vh;
   justify-content: center;
+  align-items: center;
 }
 
 #calculator {
-  width: 260px;
-  border: 1px solid black;
+  width: 290px;
 }
 
+
 .calculator-display {
-  border: 1px solid red;
+  background-color: #738B9B;
+  color: #fff;
   height: 80px;
   display: flex;
   justify-content: end;
@@ -25,20 +82,23 @@ html {
 }
 
 .calculator-keys {
-  padding: 12px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  gap: 0.5rem;
 }
 
+.key-num {
+  background-color: #fff;
+  border: 1px solid #A0AFB7;
+}
+
+
 button {
-  height: 42px;
-  border-radius: 50%;
+  height: 68px;
+  border: 1px solid #A0AFB7;
 }
 
 .test {
   grid-column-start: 1;
   grid-column-end: 3;
-  border-radius: 40px;
 }
