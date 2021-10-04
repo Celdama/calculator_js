@@ -40,6 +40,8 @@ keys.addEventListener('click', (e) => {
     const keyContent = key.textContent;
     const displayedNum = display.textContent;
     const previousKeyType = calculator.dataset.previousKeyType;
+
+    // console.log(displayedNum);
     // pas d'action, c'est donc une key de chiffre
     if (!action) {
       // j'affiche la valeur dans l'écran
@@ -50,6 +52,12 @@ keys.addEventListener('click', (e) => {
         display.textContent = displayedNum + keyContent;
       }
       calculator.dataset.previousKeyType = 'number';
+    }
+
+    if (action === 'percent') {
+      if (displayedNum !== 0) {
+        display.textContent = displayedNum / 100;
+      }
     }
 
     if (action === 'decimal') {
@@ -94,6 +102,12 @@ keys.addEventListener('click', (e) => {
         calculator.dataset.operator = action;
       }
     }
+
+    // if (action === 'percent') {
+    //   // if (displayedNum) {
+    //   //   console.log(diplayedNum);
+    //   // }
+    // }
 
     if (action === 'calculate') {
       // ne fait rien si les 2 opérande et l'opérateur ne sont pas défini
