@@ -1,6 +1,9 @@
 const calculator = document.querySelector('#calculator');
 const keys = calculator.querySelector('.calculator-keys');
 const display = document.querySelector('#display-result');
+const copyrightYear = document.querySelector('.copyright-year');
+
+copyrightYear.textContent = ` ${new Date().getFullYear()} `;
 
 const roundedResult = (num) => Math.round(num * 1000000) / 1000000;
 
@@ -41,7 +44,6 @@ keys.addEventListener('click', (e) => {
     const displayedNum = display.textContent;
     const previousKeyType = calculator.dataset.previousKeyType;
 
-    // console.log(displayedNum);
     // pas d'action, c'est donc une key de chiffre
     if (!action) {
       // j'affiche la valeur dans l'écran
@@ -102,12 +104,6 @@ keys.addEventListener('click', (e) => {
         calculator.dataset.operator = action;
       }
     }
-
-    // if (action === 'percent') {
-    //   // if (displayedNum) {
-    //   //   console.log(diplayedNum);
-    //   // }
-    // }
 
     if (action === 'calculate') {
       // ne fait rien si les 2 opérande et l'opérateur ne sont pas défini

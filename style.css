@@ -58,7 +58,7 @@ body {
 
 #app {
   display: flex;
-  height: 90vh;
+  height: 92vh;
   justify-content: center;
   align-items: center;
 }
@@ -119,4 +119,9 @@ body {
 .calculator-keys .key-zero {
   grid-column-start: 1;
   grid-column-end: 3;
+}
+
+.copyright {
+  text-align: center;
+  color: #3b474e;
 }
