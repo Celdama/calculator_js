@@ -34,7 +34,7 @@ const operate = (operator, firstOperande, secondOperande) => {
 };
 
 keys.addEventListener('click', (e) => {
-  if (e.target.matches('button')) {
+  if (e.target.matches('button') || e.target.matches('i')) {
     const key = e.target;
     const action = key.dataset.action;
     const keyContent = key.textContent;
